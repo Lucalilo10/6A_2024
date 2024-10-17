@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gasser's Information</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        h1, h2 {
+            color: #03a9f4;
+            text-align: center;
+            animation: slideIn 1s ease-in-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .info {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-bottom: 1px solid #03a9f4;
+            transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+        }
+        .info:hover {
+            background-color: #333;
+            transform: rotate(-1deg);
+            color: #ffeb3b;
+        }
+        .label {
+            font-weight: bold;
+            color: #03a9f4;
+            display: inline-block;
+            width: 150px;
+            transition: color 0.3s ease;
+        }
+        .label:hover {
+            color: #ffeb3b;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        ul li {
+            background-color: #333;
+            padding: 5px;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        ul li:hover {
+            background-color: #444;
+            transform: translateX(10px) rotate(-2deg);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+        a {
+            text-decoration: none;
+            color: #03a9f4;
+            transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #ffeb3b;
+            text-shadow: 0 0 10px #ffeb3b;
+            transform: scale(1.1);
+        }
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 5px solid #03a9f4;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .image-container img:hover {
+            transform: scale(1.05) rotate(2deg);
+            filter: brightness(1.2);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+      <div class="container">
+          <div class="image-container">
+              <img src="i don't have.jpeg" alt="Me" width="400">
+          </div>
+        <h1>gasser's Information</h1>
+        <div class="info">
+            <span class="label">Name:</span> Gasser
+        </div>
+        <div class="info">
+            <span class="label">Age:</span> 13
+        </div>
+        <div class="info">
+            <span class="label">Hobbies:</span> Playstation
+        </div>
+        <div class="info">
+            <span class="label">Talent:</span> N/A
+        </div>
+        <div class="info">
+            <span class="label">Favorite Sport:</span> Football
+        </div>
+        <div class="info">
+            <span class="label">Favorite Person in Class:</span> N/A
+        </div>
+        <div class="info">
+            <span class="label">Favorite Person in General:</span> My family
+        </div>
+        <div class="info">
+            <span class="label">Favorite Teacher:</span>
+             <ul>
+              <li>M. José</li>
+              <li>M.jack</li>
+            </ul>
+        </div>
+        <div class="info">
+            <span class="label">Favorite Subjects:</span> Maths - Fr
+        </div>
+    </div>
+</body>
+</html>
