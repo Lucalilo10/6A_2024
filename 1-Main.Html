@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Main Page</title>
+    <style>
+          body {
+              background-color: #121212;
+              color: #ffffff;
+              font-family: 'Roboto', sans-serif;
+              margin: 0;
+              padding: 20px;
+              overflow-x: hidden;
+          }
+
+          .container {
+              max-width: 600px;
+              margin: auto;
+              padding: 20px;
+              background-color: #1e1e1e;
+              border-radius: 10px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+              position: relative;
+              animation: fadeIn 1s ease-in-out;
+          }
+
+          @keyframes fadeIn {
+              from {
+                  opacity: 0;
+              }
+
+              to {
+                  opacity: 1;
+              }
+          }
+
+          h1 {
+              color: #03a9f4;
+              text-align: center;
+              animation: slideIn 1s ease-in-out;
+          }
+
+          @keyframes slideIn {
+              from {
+                  transform: translateY(-20px);
+                  opacity: 0;
+              }
+
+              to {
+                  transform: translateY(0);
+                  opacity: 1;
+              }
+          }
+
+          .search-bar {
+              width: 100%;
+              padding: 15px 5px;
+              border: 2px solid #03a9f4;
+              border-radius: 20px;
+              background-color: #333;
+              color: #ffffff;
+              font-size: 16px;
+              outline: none;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+              transition: border-color 0.3s ease, background-color 0.3s ease;
+          }
+
+          .search-bar::placeholder {
+              color: #b0bec5;
+          }
+
+          .search-bar:focus {
+              border-color: #ffeb3b;
+              background-color: #444;
+          }
+
+          .student-info, .teacher-info, .the-owner {
+              display: flex;
+              align-items: center;
+              background-color: #1e1e1e;
+              border: 1px solid #03a9f4;
+              border-radius: 10px;
+              padding: 15px;
+              margin-bottom: 20px;
+              transition: background-color 0.3s ease, box-shadow 0.3s ease;
+          }
+
+          .student-info:hover, .teacher-info:hover, .the-owner:hover {
+              background-color: #333;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+          }
+
+          .student-info img, .teacher-info img, .the-owner img {
+              width: 100px;
+              height: 100px;
+              border-radius: 50%;
+              border: 3px solid #03a9f4;
+              margin-right: 15px;
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+          }
+
+          .student-info img:hover, .teacher-info img:hover, .the-owner img:hover {
+              transform: scale(1.1);
+              box-shadow: 0 0 10px #03a9f4;
+          }
+
+          .student-info div, .teacher-info div, .the-owner div {
+              flex: 1;
+          }
+
+          .student-info b, .teacher-info b, .the-owner b {
+              font-size: 1.2em;
+              color: #ffeb3b;
+          }
+
+          .student-info a, .teacher-info a, .the-owner a {
+              color: #03a9f4;
+              text-decoration: none;
+              transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+          }
+
+          .student-info a:hover, .teacher-info a:hover, .the-owner a:hover {
+              color: #ffeb3b;
+              text-shadow: 0 0 10px #ffeb3b;
+              transform: scale(1.1);
+          }
+
+          #controlsContainer {
+              position: fixed;
+              top: 20px;
+              right: 20px;
+              display: flex;
+              gap: 10px;
+              z-index: 1000;
+          }
+
+          #playButton, #playlistButton, #restartButton {
+              background-color: #333;
+              border: 2px solid #03a9f4;
+              color: #fff;
+              padding: 15px 25px;
+              text-align: center;
+              text-decoration: none;
+              font-size: 16px;
+              cursor: pointer;
+              border-radius: 1000px;
+              box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+              transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+          }
+
+          #playButton:hover, #playlistButton:hover, #restartButton:hover {
+              background-color: #03a9f4;
+              border-color: #03a9f4;
+              color: #121212;
+          }
+
+          #playButton:active, #playlistButton:active, #restartButton:active {
+              background-color: #0288d1;
+          }
+
+          #playlist {
+              display: none;
+              position: fixed;
+              top: 80px;
+              right: 20px;
+              background-color: #333;
+              border: 2px solid #03a9f4;
+              border-radius: 10px;
+              box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+              color: #fff;
+              padding: 10px;
+              width: 200px;
+              z-index: 1000;
+          }
+
+          #playlist ul {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+          }
+
+          #playlist ul li {
+              padding: 10px;
+              border-bottom: 1px solid #444;
+              cursor: pointer;
+              transition: background-color 0.3s;
+          }
+
+          #playlist ul li:hover {
+              background-color: #03a9f4;
+              color: #121212;
+          }
+
+          #timelineContainer {
+              position: fixed;
+              right: 20px;
+              top: 120px; /* Adjust this value to position the timeline exactly below the buttons */
+              width: 220px;
+              z-index: 900; /* Set the z-index lower than the playlist */
+          }
+
+          #timeline {
+              width: 100%;
+              cursor: pointer;
+          }
+          #volumeButton {
+              background-color: #333;
+              border: 2px solid #03a9f4;
+              color: #fff;
+              padding: 15px 20px;
+              text-align: center;
+              text-decoration: none;
+              font-size: 16px;
+              cursor: pointer;
+              border-radius: 50%;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+              transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+          }
+
+          #volumeButton:hover {
+              background-color: #03a9f4;
+              border-color: #03a9f4;
+              color: #121212;
+          }
+
+          #volumeButton:active {
+              background-color: #0288d1;
+          }
+
+      </style>
+</head>
+
+<body>
+  <audio id="backgroundMusic">
+       <source src="Chris Grey - Let The World Burn (Lyrics).mp3" type="audio/mp3">
+   </audio>
+
+     <div id="controlsContainer">
+       <button id="playButton" class="icon">
+           <i class="fas fa-play"></i> <!-- Play icon -->
+       </button>
+       <button id="playlistButton" class="icon">
+           <i class="fas fa-list"></i> <!-- Playlist icon -->
+       </button>
+       <button id="restartButton" class="icon">
+           <i class="fas fa-redo"></i> <!-- Restart icon -->
+       </button>
+       <button id="volumeButton" class="icon">
+    <i class="fas fa-volume-up"></i> <!-- أيقونة الصوت -->
+</button>
+<input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="1" style="width: 100px;">
+
+   </div>
+
+   <div id="playlist">
+       <ul>
+           <li onclick="changeMusic('Chris Grey - Let The World Burn (Lyrics).mp3')">Let The World Burn</li>
+           <li onclick="changeMusic('Villain「AMV」Anime Mix.mp3')">Villain</li>
+           <li onclick="changeMusic('Fiha aih ya3ny.mp3')">Fiha aih ya3ny</li>
+           <li onclick="changeMusic('Nagets.mp3')">Nagets</li>
+           <li onclick="changeMusic('was3 was3.mp3')">Was3_Was3</li>
+           <li onclick="changeMusic('Heya_Di.mp3')">Motalazmt El Gayar</li>
+           <li onclick="changeMusic('ana_nagm.mp3')">Ana_Nagm</li>
+           <li onclick="changeMusic('metkatf.mp3')">Mtkatf</li>
+           <li onclick="changeMusic('tarantynw.mp3')">Tarantyno</li>
+           <li onclick="changeMusic('robrto.mp3')">Robrto</li>
+           <li onclick="changeMusic('kwstaryka.mp3')">Kostaryka</li>
+       </ul>
+   </div>
+
+   <!-- Timeline -->
+   <div id="timelineContainer">
+       <input id="timeline" type="range" min="0" value="0" step="1">
+   </div>
+
+   <script>
+       const audio = document.getElementById('backgroundMusic');
+       const playButton = document.getElementById('playButton');
+       const playlistButton = document.getElementById('playlistButton');
+       const restartButton = document.getElementById('restartButton');
+       const playlist = document.getElementById('playlist');
+       const timeline = document.getElementById('timeline');
+
+       playButton.addEventListener('click', () => {
+           if (audio.paused) {
+               audio.play();
+               playButton.innerHTML = '<i class="fas fa-pause"></i>'; // Change icon to pause
+           } else {
+               audio.pause();
+               playButton.innerHTML = '<i class="fas fa-play"></i>'; // Change icon to play
+           }
+       });
+
+       playlistButton.addEventListener('click', () => {
+           playlist.style.display = playlist.style.display === 'block' ? 'none' : 'block';
+       });
+
+       restartButton.addEventListener('click', () => {
+           audio.currentTime = 0; // Restart audio
+           audio.play(); // Play from the beginning
+           playButton.innerHTML = '<i class="fas fa-pause"></i>'; // Change icon to pause
+       });
+
+       function changeMusic(song) {
+           audio.src = song;
+           audio.play();
+           playButton.innerHTML = '<i class="fas fa-pause"></i>'; // Change icon to pause
+           playlist.style.display = 'none';
+       }
+
+       audio.addEventListener('timeupdate', () => {
+           // Update the timeline slider as the audio plays
+           timeline.value = (audio.currentTime / audio.duration) * 100;
+       });
+
+       timeline.addEventListener('input', () => {
+           // Seek the audio to the position where the slider is
+           audio.currentTime = (timeline.value / 100) * audio.duration;
+       });
+       function searchTeachers() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const studentInfos = document.querySelectorAll('.student-info, .teacher-info, .the-owner');
+
+    studentInfos.forEach(info => {
+        const name = info.querySelector('b').textContent.toLowerCase();
+        if (name.includes(filter)) {
+            info.style.display = ''; // إظهار العنصر
+        } else {
+            info.style.display = 'none'; // إخفاء العنصر
+        }
+    });
+}
+const volumeButton = document.getElementById('volumeButton');
+const volumeSlider = document.getElementById('volumeSlider');
+
+// ضبط مستوى الصوت عند تغيير قيمة السلايدر
+volumeSlider.addEventListener('input', () => {
+    audio.volume = volumeSlider.value; // تغيير مستوى الصوت
+});
+
+// تحديث الأيقونة بناءً على مستوى الصوت
+volumeButton.addEventListener('click', () => {
+    if (audio.volume > 0) {
+        audio.volume = 0; // كتم الصوت
+        volumeSlider.value = 0; // تحديث السلايدر
+        volumeButton.innerHTML = '<i class="fas fa-volume-mute"></i>'; // تغيير الأيقونة
+    } else {
+        audio.volume = 1; // رفع مستوى الصوت
+        volumeSlider.value = 1; // تحديث السلايدر
+        volumeButton.innerHTML = '<i class="fas fa-volume-up"></i>'; // إعادة الأيقونة
+    }
+});
+
+   </script>
+
+    <div class="container">
+        <h1>Main Page</h1>
+        <input type="text" id="searchInput" class="search-bar" onkeyup="searchTeachers()" placeholder="Bdour 3la Min??">
+        <br>
+        <p>ㅤ</p>
+        <div class="teacher-info">
+          <br>
+            <img src="M.Jose.jpeg" alt="M. José">
+            <div>
+                <b>M. José</b><br>
+                <a href="M.Jose.html">Visit Profile</a>
+            </div>
+        </div>
+        <div class="student-info">
+            <img src="Adam Amir.jpeg" alt="Adam Amir">
+            <div>
+                <b>Adam Amir</b><br>
+                <a href="Adam Amir.Html">Visit Profile</a>
+            </div>
+        </div>
+        <div class="student-info">
+            <img src="i don't have.jpeg" alt="Gasser">
+            <div>
+                <b>Gasser</b><br>
+                <a href="Gasser.html">Visit Profile</a>
+            </div>
+        </div>
+        <div class="the-owner">
+            <img src="Malek Alaa.jpg" alt="Me">
+            <div>
+                <b>Malek Alaa</b><br>
+                <a href="Malek Alaa.Html">Visit Profile</a>
+            </div>
+        </div>
+        <div class="student-info">
+            <img src="Malek Hesham.jpeg" alt="Malek Hesham">
+            <div>
+                <b>Malek Hesham</b><br>
+                <a href="Malek Hesham.html">Visit Profile</a>
+            </div>
+        </div>
+        <div class="student-info">
+            <img src="Mark Michel.jpeg" alt="Mark Michel">
+            <div>
+                <b>Mark Michel</b><br>
+                <a href="Mark Michel.html">Visit Profile</a>
+            </div>
+        </div>
+        <div class="student-info">
+            <img src="i don't have.jpeg" alt="Mohamed Mabrouk">
+            <div>
+                <b>Mohamed Mabrouk</b><br>
+                <a href="Mohamed  mabrouk.html">Visit Profile</a>
+            </div>
+        </div>
+        <div class="student-info">
+            <img src="Mohemed Hemdan.jpg" alt="Mohamed Hemdan">
+            <div>
+                <b>Mohamed Hemdan</b><br>
+                <a href="Mohamed Hemdan.html">Visit Profile</a>
+            </div>
+        </div>
+        <div class="student-info">
+            <img src="Omar Hemdan.jpg" alt="Omar Hemdan">
+            <div>
+                <b>Omar Hemdan</b><br>
+                <a href="Omar Hemdan.Html">Visit Profile</a>
+            </div>
+        </div>
+        <div class="student-info">
+            <img src="Omar sanad.jpg" alt="Omar Sanad">
+            <div>
+                <b>Omar Sanad</b><br>
+                <a href="Omar Sanad.html">Visit Profile</a>
+            </div>
+        </div>
+        <div class="student-info">
+            <img src="Ramez Riad.jpg" alt="Ramez Riad">
+            <div>
+                <b>Ramez Riad</b><br>
+                <a href="Ramez Riad.html">Visit Profile</a>
+            </div>
+        </div>
+        <div class="student-info">
+            <img src="i don't have.jpeg" alt="Yassin Ali">
+            <div>
+                <b>Yassin Ali</b><br>
+                <a href="Yassin Ali.html">Visit Profile</a>
+            </div>
+        </div>
+        <div class="student-info">
+            <img src="Yassin Tamer.jpeg" alt="Yassin Tamer">
+            <div>
+                <b>Yassin Tamer</b><br>
+                <a href="Yassin Tamer.Html">Visit Profile</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
