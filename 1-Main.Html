@@ -337,21 +337,19 @@
 const volumeButton = document.getElementById('volumeButton');
 const volumeSlider = document.getElementById('volumeSlider');
 
-// ضبط مستوى الصوت عند تغيير قيمة السلايدر
 volumeSlider.addEventListener('input', () => {
-    audio.volume = volumeSlider.value; // تغيير مستوى الصوت
+    audio.volume = volumeSlider.value;
 });
 
-// تحديث الأيقونة بناءً على مستوى الصوت
 volumeButton.addEventListener('click', () => {
     if (audio.volume > 0) {
-        audio.volume = 0; // كتم الصوت
-        volumeSlider.value = 0; // تحديث السلايدر
-        volumeButton.innerHTML = '<i class="fas fa-volume-mute"></i>'; // تغيير الأيقونة
+        audio.volume = 0;
+        volumeSlider.value = 0;
+        volumeButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
     } else {
-        audio.volume = 1; // رفع مستوى الصوت
-        volumeSlider.value = 1; // تحديث السلايدر
-        volumeButton.innerHTML = '<i class="fas fa-volume-up"></i>'; // إعادة الأيقونة
+        audio.volume = 1;
+        volumeSlider.value = 1;
+        volumeButton.innerHTML = '<i class="fas fa-volume-up"></i>';
     }
 });
 
@@ -362,6 +360,14 @@ volumeButton.addEventListener('click', () => {
         <input type="text" id="searchInput" class="search-bar" onkeyup="searchTeachers()" placeholder="Bdour 3la Min??">
         <br>
         <p>ㅤ</p>
+        <div class="teacher-info">
+          <br>
+            <img src="Files.png" alt="Files">
+            <div>
+                <b>Files</b><br>
+                <a href="https://drive.google.com/drive/folders/1ZhHMuxPuAlopgnV0wEvuh7mZhpf18_AZ?usp=drive_link">Open Files installer</a>
+            </div>
+        </div>
         <div class="teacher-info">
           <br>
             <img src="M.Jose.jpeg" alt="M. José">
