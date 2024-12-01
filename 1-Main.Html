@@ -204,9 +204,9 @@
           #timelineContainer {
               position: fixed;
               right: 20px;
-              top: 120px; /* Adjust this value to position the timeline exactly below the buttons */
+              top: 120px;
               width: 220px;
-              z-index: 900; /* Set the z-index lower than the playlist */
+              z-index: 900;
           }
 
           #timeline {
@@ -247,16 +247,16 @@
 
      <div id="controlsContainer">
        <button id="playButton" class="icon">
-           <i class="fas fa-play"></i> <!-- Play icon -->
+           <i class="fas fa-play"></i>
        </button>
        <button id="playlistButton" class="icon">
-           <i class="fas fa-list"></i> <!-- Playlist icon -->
+           <i class="fas fa-list"></i>
        </button>
        <button id="restartButton" class="icon">
-           <i class="fas fa-redo"></i> <!-- Restart icon -->
+           <i class="fas fa-redo"></i>
        </button>
        <button id="volumeButton" class="icon">
-    <i class="fas fa-volume-up"></i> <!-- أيقونة الصوت -->
+    <i class="fas fa-volume-up"></i>
 </button>
 <input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="1" style="width: 100px;">
 
@@ -294,10 +294,10 @@
        playButton.addEventListener('click', () => {
            if (audio.paused) {
                audio.play();
-               playButton.innerHTML = '<i class="fas fa-pause"></i>'; // Change icon to pause
+               playButton.innerHTML = '<i class="fas fa-pause"></i>';
            } else {
                audio.pause();
-               playButton.innerHTML = '<i class="fas fa-play"></i>'; // Change icon to play
+               playButton.innerHTML = '<i class="fas fa-play"></i>';
            }
        });
 
@@ -306,25 +306,25 @@
        });
 
        restartButton.addEventListener('click', () => {
-           audio.currentTime = 0; // Restart audio
-           audio.play(); // Play from the beginning
-           playButton.innerHTML = '<i class="fas fa-pause"></i>'; // Change icon to pause
+           audio.currentTime = 0;
+           audio.play();
+           playButton.innerHTML = '<i class="fas fa-pause"></i>';
        });
 
        function changeMusic(song) {
            audio.src = song;
            audio.play();
-           playButton.innerHTML = '<i class="fas fa-pause"></i>'; // Change icon to pause
+           playButton.innerHTML = '<i class="fas fa-pause"></i>';
            playlist.style.display = 'none';
        }
 
        audio.addEventListener('timeupdate', () => {
-           // Update the timeline slider as the audio plays
+
            timeline.value = (audio.currentTime / audio.duration) * 100;
        });
 
        timeline.addEventListener('input', () => {
-           // Seek the audio to the position where the slider is
+
            audio.currentTime = (timeline.value / 100) * audio.duration;
        });
        function searchTeachers() {
@@ -335,9 +335,9 @@
     studentInfos.forEach(info => {
         const name = info.querySelector('b').textContent.toLowerCase();
         if (name.includes(filter)) {
-            info.style.display = ''; // إظهار العنصر
+            info.style.display = '';
         } else {
-            info.style.display = 'none'; // إخفاء العنصر
+            info.style.display = 'none';
         }
     });
 }
@@ -444,6 +444,13 @@ volumeButton.addEventListener('click', () => {
             <div>
                 <b>Omar Hemdan</b><br>
                 <a href="Omar Hemdan.Html">Visit Profile</a>
+            </div>
+        </div>
+        <div class="student-info">
+            <img src="Omar Mourad.jpg" alt="Omar Mourad">
+            <div>
+                <b>Omar Mourad</b><br>
+                <a href="Omar Mourad.html">Visit Profile</a>
             </div>
         </div>
         <div class="student-info">
