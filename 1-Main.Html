@@ -264,6 +264,7 @@
 
    <div id="playlist">
        <ul>
+         <li onclick="changeMusic('C(ft. سوكايرو & FNR)راب ايرين  نايزر.mp3')">AOT</li>
            <li onclick="changeMusic('Chris Grey - Let The World Burn (Lyrics).mp3')">Let The World Burn</li>
            <li onclick="changeMusic('Villain「AMV」Anime Mix.mp3')">Villain</li>
            <li onclick="changeMusic('Fiha aih ya3ny.mp3')">Fiha aih ya3ny</li>
@@ -284,81 +285,87 @@
    </div>
 
    <script>
-       const audio = document.getElementById('backgroundMusic');
-       const playButton = document.getElementById('playButton');
-       const playlistButton = document.getElementById('playlistButton');
-       const restartButton = document.getElementById('restartButton');
-       const playlist = document.getElementById('playlist');
-       const timeline = document.getElementById('timeline');
-
-       playButton.addEventListener('click', () => {
-           if (audio.paused) {
-               audio.play();
-               playButton.innerHTML = '<i class="fas fa-pause"></i>';
-           } else {
-               audio.pause();
-               playButton.innerHTML = '<i class="fas fa-play"></i>';
-           }
-       });
-
-       playlistButton.addEventListener('click', () => {
-           playlist.style.display = playlist.style.display === 'block' ? 'none' : 'block';
-       });
-
-       restartButton.addEventListener('click', () => {
-           audio.currentTime = 0;
-           audio.play();
-           playButton.innerHTML = '<i class="fas fa-pause"></i>';
-       });
-
-       function changeMusic(song) {
-           audio.src = song;
-           audio.play();
-           playButton.innerHTML = '<i class="fas fa-pause"></i>';
-           playlist.style.display = 'none';
-       }
-
-       audio.addEventListener('timeupdate', () => {
-
-           timeline.value = (audio.currentTime / audio.duration) * 100;
-       });
-
-       timeline.addEventListener('input', () => {
-
-           audio.currentTime = (timeline.value / 100) * audio.duration;
-       });
-       function searchTeachers() {
-    const input = document.getElementById('searchInput');
-    const filter = input.value.toLowerCase();
-    const studentInfos = document.querySelectorAll('.student-info, .teacher-info, .the-owner');
-
-    studentInfos.forEach(info => {
-        const name = info.querySelector('b').textContent.toLowerCase();
-        if (name.includes(filter)) {
-            info.style.display = '';
-        } else {
-            info.style.display = 'none';
-        }
-    });
-}
+   const audio = document.getElementById('backgroundMusic');
+const playButton = document.getElementById('playButton');
+const playlistButton = document.getElementById('playlistButton');
+const restartButton = document.getElementById('restartButton');
+const playlist = document.getElementById('playlist');
+const timeline = document.getElementById('timeline');
 const volumeButton = document.getElementById('volumeButton');
 const volumeSlider = document.getElementById('volumeSlider');
 
+playButton.addEventListener('click', () => {
+if (audio.paused) {
+    audio.play();
+    playButton.innerHTML = '<i class="fas fa-pause"></i>';
+} else {
+    audio.pause();
+    playButton.innerHTML = '<i class="fas fa-play"></i>';
+}
+});
+
+playlistButton.addEventListener('click', () => {
+playlist.style.display = playlist.style.display === 'block' ? 'none' : 'block';
+});
+
+restartButton.addEventListener('click', () => {
+audio.currentTime = 0;
+audio.play();
+playButton.innerHTML = '<i class="fas fa-pause"></i>';
+});
+
+function changeMusic(song) {
+audio.src = song;
+audio.play();
+playButton.innerHTML = '<i class="fas fa-pause"></i>';
+playlist.style.display = 'none';
+}
+
+audio.addEventListener('timeupdate', () => {
+timeline.value = (audio.currentTime / audio.duration) * 100;
+});
+
+timeline.addEventListener('input', () => {
+audio.currentTime = (timeline.value / 100) * audio.duration;
+});
+
 volumeSlider.addEventListener('input', () => {
-    audio.volume = volumeSlider.value;
+audio.volume = volumeSlider.value;
 });
 
 volumeButton.addEventListener('click', () => {
-    if (audio.volume > 0) {
-        audio.volume = 0;
-        volumeSlider.value = 0;
-        volumeButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+if (audio.volume > 0) {
+    audio.volume = 0;
+    volumeSlider.value = 0;
+    volumeButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+} else {
+    audio.volume = 1;
+    volumeSlider.value = 1;
+    volumeButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+}
+});
+
+// Event to repeat the song when it ends
+audio.addEventListener('ended', () => {
+audio.currentTime = 0;
+audio.play();
+playButton.innerHTML = '<i class="fas fa-pause"></i>';
+});
+
+function searchTeachers() {
+const input = document.getElementById('searchInput');
+const filter = input.value.toLowerCase();
+const studentInfos = document.querySelectorAll('.student-info, .teacher-info, .the-owner');
+
+studentInfos.forEach(info => {
+    const name = info.querySelector('b').textContent.toLowerCase();
+    if (name.includes(filter)) {
+        info.style.display = '';
     } else {
-        audio.volume = 1;
-        volumeSlider.value = 1;
-        volumeButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+        info.style.display = 'none';
     }
 });
+}
 
    </script>
 
