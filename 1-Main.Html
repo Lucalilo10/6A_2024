@@ -7,92 +7,95 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Main Page</title>
     <style>
-          body {
-              background-color: #121212;
-              color: #ffffff;
-              font-family: 'Roboto', sans-serif;
-              margin: 0;
-              padding: 20px;
-              overflow-x: hidden;
-          }
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
 
-          .container {
-              max-width: 600px;
-              margin: auto;
-              padding: 20px;
-              background-color: #1e1e1e;
-              border-radius: 10px;
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-              position: relative;
-              animation: fadeIn 1s ease-in-out;
-          }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: fadeIn 1s ease-in-out;
+        }
 
-          @keyframes fadeIn {
-              from {
-                  opacity: 0;
-              }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
 
-              to {
-                  opacity: 1;
-              }
-          }
+        h1 {
+            color: #03a9f4;
+            text-align: center;
+            animation: slideIn 1s ease-in-out;
+        }
 
-          h1 {
-              color: #03a9f4;
-              text-align: center;
-              animation: slideIn 1s ease-in-out;
-          }
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
 
-          @keyframes slideIn {
-              from {
-                  transform: translateY(-20px);
-                  opacity: 0;
-              }
+        .search-bar {
+            width: 100%;
+            padding: 15px 5px;
+            border: 2px solid #03a9f4;
+            border-radius: 20px;
+            background-color: #333;
+            color: #ffffff;
+            font-size: 16px;
+            outline: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
 
-              to {
-                  transform: translateY(0);
-                  opacity: 1;
-              }
-          }
+        .search-bar::placeholder {
+            color: #b0bec5;
+        }
 
-          .search-bar {
-              width: 100%;
-              padding: 15px 5px;
-              border: 2px solid #03a9f4;
-              border-radius: 20px;
-              background-color: #333;
-              color: #ffffff;
-              font-size: 16px;
-              outline: none;
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-              transition: border-color 0.3s ease, background-color 0.3s ease;
-          }
+        .search-bar:focus {
+            border-color: #ffeb3b;
+            background-color: #444;
+        }
 
-          .search-bar::placeholder {
-              color: #b0bec5;
-          }
+        .student-info,
+        .teacher-info,
+        .the-owner {
+            display: flex;
+            align-items: center;
+            background-color: #1e1e1e;
+            border: 1px solid #03a9f4;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
 
-          .search-bar:focus {
-              border-color: #ffeb3b;
-              background-color: #444;
-          }
+        .student-info:hover,
+        .teacher-info:hover,
+        .the-owner:hover {
+            background-color: #333;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
 
-          .student-info, .teacher-info, .the-owner {
-              display: flex;
-              align-items: center;
-              background-color: #1e1e1e;
-              border: 1px solid #03a9f4;
-              border-radius: 10px;
-              padding: 15px;
-              margin-bottom: 20px;
-              transition: background-color 0.3s ease, box-shadow 0.3s ease;
-          }
-
-          .student-info:hover, .teacher-info:hover, .the-owner:hover {
-              background-color: #333;
-              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-          }
-          .the-owner img {
+        .the-owner img {
             width: 120px;
             height: 120px;
             border-radius: 50%;
@@ -100,274 +103,249 @@
             margin-right: 15px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-          .student-info img, .teacher-info img {
-              width: 120px;
-              height: 120px;
-              border-radius: 50%;
-              border: 3px solid #03a9f4;
-              margin-right: 15px;
-              transition: transform 0.3s ease, box-shadow 0.3s ease;
-          }
 
-          .student-info img:hover, .teacher-info img:hover, .the-owner img:hover {
-              transform: scale(1.1);
-              box-shadow: 0 0 10px #03a9f4;
-          }
+        .student-info img,
+        .teacher-info img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #03a9f4;
+            margin-right: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-          .student-info div, .teacher-info div, .the-owner div {
-              flex: 1;
-          }
+        .student-info img:hover,
+        .teacher-info img:hover,
+        .the-owner img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px #03a9f4;
+        }
 
-          .student-info b, .teacher-info b, .the-owner b {
-              font-size: 1.2em;
-              color: #ffeb3b;
-          }
+        .student-info div,
+        .teacher-info div,
+        .the-owner div {
+            flex: 1;
+        }
 
-          .student-info a, .teacher-info a, .the-owner a {
-              color: #03a9f4;
-              text-decoration: none;
-              transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
-          }
+        .student-info b,
+        .teacher-info b,
+        .the-owner b {
+            font-size: 1.2em;
+            color: #ffeb3b;
+        }
 
-          .student-info a:hover, .teacher-info a:hover, .the-owner a:hover {
-              color: #ffeb3b;
-              text-shadow: 0 0 10px #ffeb3b;
-              transform: scale(1.1);
-          }
+        .student-info a,
+        .teacher-info a,
+        .the-owner a {
+            color: #03a9f4;
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+        }
 
-          #controlsContainer {
-              position: fixed;
-              top: 20px;
-              right: 20px;
-              display: flex;
-              gap: 10px;
-              z-index: 1000;
-          }
+        .student-info a:hover,
+        .teacher-info a:hover,
+        .the-owner a:hover {
+            color: #ffeb3b;
+            text-shadow: 0 0 10px #ffeb3b;
+            transform: scale(1.1);
+        }
 
-          #playButton, #playlistButton, #restartButton {
-              background-color: #333;
-              border: 2px solid #03a9f4;
-              color: #fff;
-              padding: 15px 25px;
-              text-align: center;
-              text-decoration: none;
-              font-size: 16px;
-              cursor: pointer;
-              border-radius: 1000px;
-              box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-              transition: background-color 0.3s, border-color 0.3s, color 0.3s;
-          }
+        #controlsContainer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
 
-          #playButton:hover, #playlistButton:hover, #restartButton:hover {
-              background-color: #03a9f4;
-              border-color: #03a9f4;
-              color: #121212;
-          }
+        #playButton,
+        #playlistButton,
+        #restartButton {
+            background-color: #333;
+            border: 2px solid #03a9f4;
+            color: #fff;
+            padding: 15px 25px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 1000px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
 
-          #playButton:active, #playlistButton:active, #restartButton:active {
-              background-color: #0288d1;
-          }
+        #playButton:hover,
+        #playlistButton:hover,
+        #restartButton:hover {
+            background-color: #03a9f4;
+            border-color: #03a9f4;
+            color: #121212;
+        }
 
-          #playlist {
-              display: none;
-              position: fixed;
-              top: 80px;
-              right: 20px;
-              background-color: #333;
-              border: 2px solid #03a9f4;
-              border-radius: 10px;
-              box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-              color: #fff;
-              padding: 10px;
-              width: 200px;
-              z-index: 1000;
-          }
+        #playButton:active,
+        #playlistButton:active,
+        #restartButton:active {
+            background-color: #0288d1;
+        }
 
-          #playlist ul {
-              list-style: none;
-              padding: 0;
-              margin: 0;
-          }
+        #playlist {
+            display: none;
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background-color: #333;
+            border: 2px solid #03a9f4;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 10px;
+            width: 200px;
+            z-index: 1000;
+        }
 
-          #playlist ul li {
-              padding: 10px;
-              border-bottom: 1px solid #444;
-              cursor: pointer;
-              transition: background-color 0.3s;
-          }
+        #playlist ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
-          #playlist ul li:hover {
-              background-color: #03a9f4;
-              color: #121212;
-          }
+        #playlist ul li {
+            padding: 10px;
+            border-bottom: 1px solid #444;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-          #timelineContainer {
-              position: fixed;
-              right: 20px;
-              top: 120px;
-              width: 220px;
-              z-index: 900;
-          }
+        #playlist ul li:hover {
+            background-color: #03a9f4;
+            color: #121212;
+        }
 
-          #timeline {
-              width: 100%;
-              cursor: pointer;
-          }
-          #volumeButton {
-              background-color: #333;
-              border: 2px solid #03a9f4;
-              color: #fff;
-              padding: 15px 20px;
-              text-align: center;
-              text-decoration: none;
-              font-size: 16px;
-              cursor: pointer;
-              border-radius: 50%;
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-              transition: background-color 0.3s, border-color 0.3s, color 0.3s;
-          }
+        #timelineContainer {
+            position: fixed;
+            right: 20px;
+            top: 120px;
+            width: 220px;
+            z-index: 900;
+        }
 
-          #volumeButton:hover {
-              background-color: #03a9f4;
-              border-color: #03a9f4;
-              color: #121212;
-          }
+        #timeline {
+            width: 100%;
+            cursor: pointer;
+        }
 
-          #volumeButton:active {
-              background-color: #0288d1;
-          }
+        #volumeButton {
+            background-color: #333;
+            border: 2px solid #03a9f4;
+            color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
 
-      </style>
+        #volumeButton:hover {
+            background-color: #03a9f4;
+            border-color: #03a9f4;
+            color: #121212;
+        }
+
+        #volumeButton:active {
+            background-color: #0288d1;
+        }
+    </style>
 </head>
 
 <body>
-  <audio id="backgroundMusic">
-       <source src="Chris Grey - Let The World Burn (Lyrics).mp3" type="audio/mp3">
-   </audio>
 
-     <div id="controlsContainer">
-       <button id="playButton" class="icon">
-           <i class="fas fa-play"></i>
-       </button>
-       <button id="playlistButton" class="icon">
-           <i class="fas fa-list"></i>
-       </button>
-       <button id="restartButton" class="icon">
-           <i class="fas fa-redo"></i>
-       </button>
-       <button id="volumeButton" class="icon">
-    <i class="fas fa-volume-up"></i>
-</button>
-<input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="1" style="width: 100px;">
+    <script>
+        const audio = document.getElementById('backgroundMusic');
+        const playButton = document.getElementById('playButton');
+        const playlistButton = document.getElementById('playlistButton');
+        const restartButton = document.getElementById('restartButton');
+        const playlist = document.getElementById('playlist');
+        const timeline = document.getElementById('timeline');
+        const volumeButton = document.getElementById('volumeButton');
+        const volumeSlider = document.getElementById('volumeSlider');
 
-   </div>
+        playButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playButton.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                audio.pause();
+                playButton.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        });
 
-   <div id="playlist">
-       <ul>
-         <li onclick="changeMusic('(ft. سوكايرو & FNR)راب ايرين  نايزر.mp3')">AOT</li>
-           <li onclick="changeMusic('Chris Grey - Let The World Burn (Lyrics).mp3')">Let The World Burn</li>
-           <li onclick="changeMusic('Villain「AMV」Anime Mix.mp3')">Villain</li>
-           <li onclick="changeMusic('Fiha aih ya3ny.mp3')">Fiha aih ya3ny</li>
-           <li onclick="changeMusic('Nagets.mp3')">Nagets</li>
-           <li onclick="changeMusic('was3 was3.mp3')">Was3_Was3</li>
-           <li onclick="changeMusic('Heya_Di.mp3')">Motalazmt El Gayar</li>
-           <li onclick="changeMusic('ana_nagm.mp3')">Ana_Nagm</li>
-           <li onclick="changeMusic('metkatf.mp3')">Mtkatf</li>
-           <li onclick="changeMusic('tarantynw.mp3')">Tarantyno</li>
-           <li onclick="changeMusic('robrto.mp3')">Robrto</li>
-           <li onclick="changeMusic('kwstaryka.mp3')">Kostaryka</li>
-       </ul>
-   </div>
+        playlistButton.addEventListener('click', () => {
+            playlist.style.display = playlist.style.display === 'block' ? 'none' : 'block';
+        });
 
-   <!-- Timeline -->
-   <div id="timelineContainer">
-       <input id="timeline" type="range" min="0" value="0" step="1">
-   </div>
+        restartButton.addEventListener('click', () => {
+            audio.currentTime = 0;
+            audio.play();
+            playButton.innerHTML = '<i class="fas fa-pause"></i>';
+        });
 
-   <script>
-   const audio = document.getElementById('backgroundMusic');
-const playButton = document.getElementById('playButton');
-const playlistButton = document.getElementById('playlistButton');
-const restartButton = document.getElementById('restartButton');
-const playlist = document.getElementById('playlist');
-const timeline = document.getElementById('timeline');
-const volumeButton = document.getElementById('volumeButton');
-const volumeSlider = document.getElementById('volumeSlider');
+        function changeMusic(song) {
+            audio.src = song;
+            audio.play();
+            playButton.innerHTML = '<i class="fas fa-pause"></i>';
+            playlist.style.display = 'none';
+        }
 
-playButton.addEventListener('click', () => {
-if (audio.paused) {
-    audio.play();
-    playButton.innerHTML = '<i class="fas fa-pause"></i>';
-} else {
-    audio.pause();
-    playButton.innerHTML = '<i class="fas fa-play"></i>';
-}
-});
+        audio.addEventListener('timeupdate', () => {
+            timeline.value = (audio.currentTime / audio.duration) * 100;
+        });
 
-playlistButton.addEventListener('click', () => {
-playlist.style.display = playlist.style.display === 'block' ? 'none' : 'block';
-});
+        timeline.addEventListener('input', () => {
+            audio.currentTime = (timeline.value / 100) * audio.duration;
+        });
 
-restartButton.addEventListener('click', () => {
-audio.currentTime = 0;
-audio.play();
-playButton.innerHTML = '<i class="fas fa-pause"></i>';
-});
+        volumeSlider.addEventListener('input', () => {
+            audio.volume = volumeSlider.value;
+        });
 
-function changeMusic(song) {
-audio.src = song;
-audio.play();
-playButton.innerHTML = '<i class="fas fa-pause"></i>';
-playlist.style.display = 'none';
-}
+        volumeButton.addEventListener('click', () => {
+            if (audio.volume > 0) {
+                audio.volume = 0;
+                volumeSlider.value = 0;
+                volumeButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            } else {
+                audio.volume = 1;
+                volumeSlider.value = 1;
+                volumeButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+            }
+        });
 
-audio.addEventListener('timeupdate', () => {
-timeline.value = (audio.currentTime / audio.duration) * 100;
-});
+        // Event to repeat the song when it ends
+        audio.addEventListener('ended', () => {
+            audio.currentTime = 0;
+            audio.play();
+            playButton.innerHTML = '<i class="fas fa-pause"></i>';
+        });
 
-timeline.addEventListener('input', () => {
-audio.currentTime = (timeline.value / 100) * audio.duration;
-});
+        function searchTeachers() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const studentInfos = document.querySelectorAll('.student-info, .teacher-info, .the-owner');
 
-volumeSlider.addEventListener('input', () => {
-audio.volume = volumeSlider.value;
-});
-
-volumeButton.addEventListener('click', () => {
-if (audio.volume > 0) {
-    audio.volume = 0;
-    volumeSlider.value = 0;
-    volumeButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
-} else {
-    audio.volume = 1;
-    volumeSlider.value = 1;
-    volumeButton.innerHTML = '<i class="fas fa-volume-up"></i>';
-}
-});
-
-// Event to repeat the song when it ends
-audio.addEventListener('ended', () => {
-audio.currentTime = 0;
-audio.play();
-playButton.innerHTML = '<i class="fas fa-pause"></i>';
-});
-
-function searchTeachers() {
-const input = document.getElementById('searchInput');
-const filter = input.value.toLowerCase();
-const studentInfos = document.querySelectorAll('.student-info, .teacher-info, .the-owner');
-
-studentInfos.forEach(info => {
-    const name = info.querySelector('b').textContent.toLowerCase();
-    if (name.includes(filter)) {
-        info.style.display = '';
-    } else {
-        info.style.display = 'none';
-    }
-});
-}
-
-   </script>
+            studentInfos.forEach(info => {
+                const name = info.querySelector('b').textContent.toLowerCase();
+                if (name.includes(filter)) {
+                    info.style.display = '';
+                } else {
+                    info.style.display = 'none';
+                }
+            });
+        }
+    </script>
 
     <div class="container">
         <h1>Main Page</h1>
@@ -375,7 +353,7 @@ studentInfos.forEach(info => {
         <br>
         <p>ㅤ</p>
         <div class="teacher-info">
-          <br>
+            <br>
             <img src="Files.png" alt="Files">
             <div>
                 <b>Files</b><br>
@@ -390,7 +368,7 @@ studentInfos.forEach(info => {
             </div>
         </div>
         <div class="teacher-info">
-          <br>
+            <br>
             <img src="M.Jose.jpeg" alt="M. José">
             <div>
                 <b>M. José</b><br>
@@ -411,6 +389,7 @@ studentInfos.forEach(info => {
                 <a href="Gasser.html">Visit Profile</a>
             </div>
         </div>
+        
         <div class="student-info">
             <img src="Malek Hesham.jpeg" alt="Malek Hesham">
             <div>
