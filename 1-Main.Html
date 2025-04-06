@@ -5,65 +5,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <title>Main Page</title>
     <style>
+        :root {
+            --primary-color: #03a9f4;
+            --secondary-color: #ffeb3b;
+            --dark-bg: #121212;
+            --darker-bg: #1e1e1e;
+            --light-text: #ffffff;
+            --accent-color: #0288d1;
+        }
+
         body {
-            background-color: #121212;
-            color: #ffffff;
-            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg), var(--darker-bg));
+            color: var(--light-text);
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 20px;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 600px;
+            max-width: 700px;
             margin: auto;
-            padding: 20px;
-            background-color: #1e1e1e;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            background-color: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             position: relative;
             animation: fadeIn 1s ease-in-out;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1;
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h1 {
-            color: #03a9f4;
+            color: var(--primary-color);
             text-align: center;
             animation: slideIn 1s ease-in-out;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 0 0 15px rgba(3, 169, 244, 0.5);
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+            margin: 10px auto;
+            border-radius: 3px;
         }
 
         @keyframes slideIn {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .search-bar {
             width: 100%;
-            padding: 15px 5px;
-            border: 2px solid #03a9f4;
-            border-radius: 20px;
-            background-color: #333;
-            color: #ffffff;
+            padding: 15px 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 30px;
+            background-color: rgba(51, 51, 51, 0.8);
+            color: var(--light-text);
             font-size: 16px;
             outline: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: border-color 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
         }
 
         .search-bar::placeholder {
@@ -71,396 +90,473 @@
         }
 
         .search-bar:focus {
-            border-color: #ffeb3b;
-            background-color: #444;
+            border-color: var(--secondary-color);
+            background-color: rgba(68, 68, 68, 0.9);
+            box-shadow: 0 0 20px rgba(255, 235, 59, 0.3);
         }
 
-        .student-info,
-        .teacher-info,
-        .the-owner {
+        .profile-card {
             display: flex;
             align-items: center;
-            background-color: #1e1e1e;
-            border: 1px solid #03a9f4;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.8), rgba(40, 40, 40, 0.8));
+            border: 1px solid rgba(3, 169, 244, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .student-info:hover,
-        .teacher-info:hover,
-        .the-owner:hover {
-            background-color: #333;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+            z-index: -1;
+            border-radius: 16px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        .the-owner img {
+        .profile-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-color);
+        }
+
+        .profile-card:hover::before {
+            opacity: 0.3;
+        }
+
+        .profile-card img {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            border: 3px solid #03a9f4;
-            margin-right: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid var(--primary-color);
+            margin-right: 20px;
+            transition: all 0.4s ease;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .student-info img,
-        .teacher-info img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 3px solid #03a9f4;
-            margin-right: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .profile-card:hover img {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 20px var(--primary-color);
+            border-color: var(--secondary-color);
         }
 
-        .student-info img:hover,
-        .teacher-info img:hover,
-        .the-owner img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 10px #03a9f4;
-        }
-
-        .student-info div,
-        .teacher-info div,
-        .the-owner div {
+        .profile-info {
             flex: 1;
         }
 
-        .student-info b,
-        .teacher-info b,
-        .the-owner b {
-            font-size: 1.2em;
-            color: #ffeb3b;
+        .profile-info b {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            display: block;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255, 235, 59, 0.3);
         }
 
-        .student-info a,
-        .teacher-info a,
-        .the-owner a {
-            color: #03a9f4;
+        .profile-info a {
+            color: var(--primary-color);
             text-decoration: none;
-            transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
         }
 
-        .student-info a:hover,
-        .teacher-info a:hover,
-        .the-owner a:hover {
-            color: #ffeb3b;
-            text-shadow: 0 0 10px #ffeb3b;
-            transform: scale(1.1);
+        .profile-info a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -3px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
         }
 
-        #controlsContainer {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-            z-index: 1000;
+        .profile-info a:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
         }
 
-        #playButton,
-        #playlistButton,
-        #restartButton {
-            background-color: #333;
-            border: 2px solid #03a9f4;
-            color: #fff;
-            padding: 15px 25px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 1000px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        .profile-info a:hover::after {
+            width: 100%;
         }
 
-        #playButton:hover,
-        #playlistButton:hover,
-        #restartButton:hover {
-            background-color: #03a9f4;
-            border-color: #03a9f4;
-            color: #121212;
-        }
-
-        #playButton:active,
-        #playlistButton:active,
-        #restartButton:active {
-            background-color: #0288d1;
-        }
-
-        #playlist {
+        #backToTopBtn {
             display: none;
             position: fixed;
-            top: 80px;
-            right: 20px;
-            background-color: #333;
-            border: 2px solid #03a9f4;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            color: #fff;
-            padding: 10px;
-            width: 200px;
-            z-index: 1000;
-        }
-
-        #playlist ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        #playlist ul li {
-            padding: 10px;
-            border-bottom: 1px solid #444;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            font-size: 22px;
+            border: none;
+            outline: none;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
             cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        #playlist ul li:hover {
-            background-color: #03a9f4;
-            color: #121212;
-        }
-
-        #timelineContainer {
-            position: fixed;
-            right: 20px;
-            top: 120px;
-            width: 220px;
-            z-index: 900;
-        }
-
-        #timeline {
-            width: 100%;
-            cursor: pointer;
-        }
-
-        #volumeButton {
-            background-color: #333;
-            border: 2px solid #03a9f4;
-            color: #fff;
-            padding: 15px 20px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            cursor: pointer;
+            padding: 18px;
             border-radius: 50%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease-in-out;
+            opacity: 0.9;
         }
 
-        #volumeButton:hover {
-            background-color: #03a9f4;
-            border-color: #03a9f4;
-            color: #121212;
+        #backToTopBtn:hover {
+            background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            opacity: 1;
         }
 
-        #volumeButton:active {
-            background-color: #0288d1;
+        /* Floating particles background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(3, 169, 244, 0.5);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        /* Glow effect for cards */
+        .glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle at center, rgba(3, 169, 244, 0.3), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .profile-card:hover .glow {
+            opacity: 1;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                max-width: 90%;
+            }
+
+            .profile-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-card img {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .profile-info a:hover {
+                transform: none;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary-color), var(--accent-color));
+            border-radius: 10px;
+            border: 2px solid var(--darker-bg);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(var(--accent-color), var(--primary-color));
+        }
+
+        /* Pulse animation for special cards */
+        .special-card {
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(3, 169, 244, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(3, 169, 244, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(3, 169, 244, 0); }
+        }
+
+        /* Floating animation */
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Gradient text for special elements */
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
     </style>
 </head>
 
 <body>
+    <!-- Floating particles background -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <h1><span class="gradient-text">Main Page</span></h1>
+        <input type="text" id="searchInput" class="search-bar" onkeyup="searchTeachers()" placeholder="Search for someone...">
+
+        <div class="profile-card special-card floating">
+            <div class="glow"></div>
+            <img src="Files.png" alt="Files">
+            <div class="profile-info">
+                <b>Files</b>
+                <a href="https://drive.google.com/drive/folders/1ZhHMuxPuAlopgnV0wEvuh7mZhpf18_AZ?usp=drive_link">Open Files installer <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+
+        <button id="backToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+        <div class="profile-card special-card">
+            <div class="glow"></div>
+            <img src="A7med Nasser 2.jpg" alt="A7med Nasser">
+            <div class="profile-info">
+                <b>A7med Nasser</b>
+                <a href="A7med Nasser.Html">Visit Profile <i class="fas fa-user-circle"></i></a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="glow"></div>
+            <img src="M.Jose.jpeg" alt="M. José">
+            <div class="profile-info">
+                <b>M. José</b>
+                <a href="M.Jose.html">Visit Profile <i class="fas fa-user-circle"></i></a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="glow"></div>
+            <img src="Adam Amir.jpeg" alt="Adam Amir">
+            <div class="profile-info">
+                <b>Adam Amir</b>
+                <a href="Adam Amir.Html">Visit Profile <i class="fas fa-user-circle"></i></a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="glow"></div>
+            <img src="i don't have.jpeg" alt="Gasser">
+            <div class="profile-info">
+                <b>Gasser</b>
+                <a href="Gasser.html">Visit Profile <i class="fas fa-user-circle"></i></a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="glow"></div>
+            <img src="Malek Hesham.jpeg" alt="Malek Hesham">
+            <div class="profile-info">
+                <b>Malek Hesham</b>
+                <a href="Malek Hesham.html">Visit Profile <i class="fas fa-user-circle"></i></a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="glow"></div>
+            <img src="Mark Michel.jpeg" alt="Mark Michel">
+            <div class="profile-info">
+                <b>Mark Michel</b>
+                <a href="Mark Michel.html">Visit Profile <i class="fas fa-user-circle"></i></a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="glow"></div>
+            <img src="i don't have.jpeg" alt="Mohamed Mabrouk">
+            <div class="profile-info">
+                <b>Mohamed Mabrouk</b>
+                <a href="Mohamed  mabrouk.html">Visit Profile <i class="fas fa-user-circle"></i></a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="glow"></div>
+            <img src="Mohemed Hemdan.jpg" alt="Mohamed Hemdan">
+            <div class="profile-info">
+                <b>Mohamed Hemdan</b>
+                <a href="Mohamed Hemdan.html">Visit Profile <i class="fas fa-user-circle"></i></a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="glow"></div>
+            <img src="Omar Hemdan.jpg" alt="Omar Hemdan">
+            <div class="profile-info">
+                <b>Omar Hemdan</b>
+                <a href="Omar Hemdan.Html">Visit Profile <i class="fas fa-user-circle"></i></a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="glow"></div>
+            <img src="Omar Mourad.jpg" alt="Omar Mourad">
+            <div class="profile-info">
+                <b>Omar Mourad</b>
+                <a href="Omar Mourad.html">Visit Profile <i class="fas fa-user-circle"></i></a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="glow"></div>
+            <img src="Omar sanad.jpg" alt="Omar Sanad">
+            <div class="profile-info">
+                <b>Omar Sanad</b>
+                <a href="Omar Sanad.html">Visit Profile <i class="fas fa-user-circle"></i></a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="glow"></div>
+            <img src="Ramez Riad.jpg" alt="Ramez Riad">
+            <div class="profile-info">
+                <b>Ramez Riad</b>
+                <a href="Ramez Riad.html">Visit Profile <i class="fas fa-user-circle"></i></a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="glow"></div>
+            <img src="i don't have.jpeg" alt="Yassin Ali">
+            <div class="profile-info">
+                <b>Yassin Ali</b>
+                <a href="Yassin Ali.html">Visit Profile <i class="fas fa-user-circle"></i></a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="glow"></div>
+            <img src="Yassin Tamer.jpeg" alt="Yassin Tamer">
+            <div class="profile-info">
+                <b>Yassin Tamer</b>
+                <a href="Yassin Tamer.Html">Visit Profile <i class="fas fa-user-circle"></i></a>
+            </div>
+        </div>
+    </div>
 
     <script>
-        const audio = document.getElementById('backgroundMusic');
-        const playButton = document.getElementById('playButton');
-        const playlistButton = document.getElementById('playlistButton');
-        const restartButton = document.getElementById('restartButton');
-        const playlist = document.getElementById('playlist');
-        const timeline = document.getElementById('timeline');
-        const volumeButton = document.getElementById('volumeButton');
-        const volumeSlider = document.getElementById('volumeSlider');
+        // Back to top button functionality
+        window.onscroll = function() {scrollFunction()};
 
-        playButton.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play();
-                playButton.innerHTML = '<i class="fas fa-pause"></i>';
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("backToTopBtn").style.display = "block";
             } else {
-                audio.pause();
-                playButton.innerHTML = '<i class="fas fa-play"></i>';
+                document.getElementById("backToTopBtn").style.display = "none";
             }
-        });
-
-        playlistButton.addEventListener('click', () => {
-            playlist.style.display = playlist.style.display === 'block' ? 'none' : 'block';
-        });
-
-        restartButton.addEventListener('click', () => {
-            audio.currentTime = 0;
-            audio.play();
-            playButton.innerHTML = '<i class="fas fa-pause"></i>';
-        });
-
-        function changeMusic(song) {
-            audio.src = song;
-            audio.play();
-            playButton.innerHTML = '<i class="fas fa-pause"></i>';
-            playlist.style.display = 'none';
         }
 
-        audio.addEventListener('timeupdate', () => {
-            timeline.value = (audio.currentTime / audio.duration) * 100;
-        });
+        document.getElementById("backToTopBtn").onclick = function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        };
 
-        timeline.addEventListener('input', () => {
-            audio.currentTime = (timeline.value / 100) * audio.duration;
-        });
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
 
-        volumeSlider.addEventListener('input', () => {
-            audio.volume = volumeSlider.value;
-        });
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
 
-        volumeButton.addEventListener('click', () => {
-            if (audio.volume > 0) {
-                audio.volume = 0;
-                volumeSlider.value = 0;
-                volumeButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
-            } else {
-                audio.volume = 1;
-                volumeSlider.value = 1;
-                volumeButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+                // Random size between 3px and 8px
+                const size = Math.random() * 5 + 3;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+
+                // Random opacity
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+
+                // Random animation duration
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = `${duration}s`;
+
+                // Random delay
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+
+                particlesContainer.appendChild(particle);
             }
-        });
+        }
 
-        // Event to repeat the song when it ends
-        audio.addEventListener('ended', () => {
-            audio.currentTime = 0;
-            audio.play();
-            playButton.innerHTML = '<i class="fas fa-pause"></i>';
-        });
+        // Initialize particles when page loads
+        window.onload = function() {
+            createParticles();
 
+            // Add staggered animation to profile cards
+            const cards = document.querySelectorAll('.profile-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        };
+
+        // Search functionality
         function searchTeachers() {
             const input = document.getElementById('searchInput');
-            const filter = input.value.toLowerCase();
-            const studentInfos = document.querySelectorAll('.student-info, .teacher-info, .the-owner');
+            const filter = input.value.toUpperCase();
+            const cards = document.querySelectorAll('.profile-card');
 
-            studentInfos.forEach(info => {
-                const name = info.querySelector('b').textContent.toLowerCase();
-                if (name.includes(filter)) {
-                    info.style.display = '';
+            cards.forEach(card => {
+                const name = card.querySelector('b').textContent;
+                if (name.toUpperCase().indexOf(filter) > -1) {
+                    card.style.display = "";
+                    // Add a highlight effect when found
+                    card.style.animation = "none";
+                    void card.offsetWidth; // Trigger reflow
+                    card.style.animation = "pulse 1s";
                 } else {
-                    info.style.display = 'none';
+                    card.style.display = "none";
                 }
             });
         }
     </script>
-
-    <div class="container">
-        <h1>Main Page</h1>
-        <input type="text" id="searchInput" class="search-bar" onkeyup="searchTeachers()" placeholder="Bdour 3la Min??">
-        <br>
-        <p>ㅤ</p>
-        <div class="teacher-info">
-            <br>
-            <img src="Files.png" alt="Files">
-            <div>
-                <b>Files</b><br>
-                <a href="https://drive.google.com/drive/folders/1ZhHMuxPuAlopgnV0wEvuh7mZhpf18_AZ?usp=drive_link">Open Files installer</a>
-            </div>
-        </div>
-        <div class="the-owner">
-            <img src="A7med Nasser 2.jpg" alt="A7med Nasser 1" width="500" height="500">
-            <div>
-                <b>A7med Nasser</b><br>
-                <a href="A7med Nasser.Html">Visit Profile</a>
-            </div>
-        </div>
-        <div class="teacher-info">
-            <br>
-            <img src="M.Jose.jpeg" alt="M. José">
-            <div>
-                <b>M. José</b><br>
-                <a href="M.Jose.html">Visit Profile</a>
-            </div>
-        </div>
-        <div class="student-info">
-            <img src="Adam Amir.jpeg" alt="Adam Amir">
-            <div>
-                <b>Adam Amir</b><br>
-                <a href="Adam Amir.Html">Visit Profile</a>
-            </div>
-        </div>
-        <div class="student-info">
-            <img src="i don't have.jpeg" alt="Gasser">
-            <div>
-                <b>Gasser</b><br>
-                <a href="Gasser.html">Visit Profile</a>
-            </div>
-        </div>
-        
-        <div class="student-info">
-            <img src="Malek Hesham.jpeg" alt="Malek Hesham">
-            <div>
-                <b>Malek Hesham</b><br>
-                <a href="Malek Hesham.html">Visit Profile</a>
-            </div>
-        </div>
-        <div class="student-info">
-            <img src="Mark Michel.jpeg" alt="Mark Michel">
-            <div>
-                <b>Mark Michel</b><br>
-                <a href="Mark Michel.html">Visit Profile</a>
-            </div>
-        </div>
-        <div class="student-info">
-            <img src="i don't have.jpeg" alt="Mohamed Mabrouk">
-            <div>
-                <b>Mohamed Mabrouk</b><br>
-                <a href="Mohamed  mabrouk.html">Visit Profile</a>
-            </div>
-        </div>
-        <div class="student-info">
-            <img src="Mohemed Hemdan.jpg" alt="Mohamed Hemdan">
-            <div>
-                <b>Mohamed Hemdan</b><br>
-                <a href="Mohamed Hemdan.html">Visit Profile</a>
-            </div>
-        </div>
-        <div class="student-info">
-            <img src="Omar Hemdan.jpg" alt="Omar Hemdan">
-            <div>
-                <b>Omar Hemdan</b><br>
-                <a href="Omar Hemdan.Html">Visit Profile</a>
-            </div>
-        </div>
-        <div class="student-info">
-            <img src="Omar Mourad.jpg" alt="Omar Mourad">
-            <div>
-                <b>Omar Mourad</b><br>
-                <a href="Omar Mourad.html">Visit Profile</a>
-            </div>
-        </div>
-        <div class="student-info">
-            <img src="Omar sanad.jpg" alt="Omar Sanad">
-            <div>
-                <b>Omar Sanad</b><br>
-                <a href="Omar Sanad.html">Visit Profile</a>
-            </div>
-        </div>
-        <div class="student-info">
-            <img src="Ramez Riad.jpg" alt="Ramez Riad">
-            <div>
-                <b>Ramez Riad</b><br>
-                <a href="Ramez Riad.html">Visit Profile</a>
-            </div>
-        </div>
-        <div class="student-info">
-            <img src="i don't have.jpeg" alt="Yassin Ali">
-            <div>
-                <b>Yassin Ali</b><br>
-                <a href="Yassin Ali.html">Visit Profile</a>
-            </div>
-        </div>
-        <div class="student-info">
-            <img src="Yassin Tamer.jpeg" alt="Yassin Tamer">
-            <div>
-                <b>Yassin Tamer</b><br>
-                <a href="Yassin Tamer.Html">Visit Profile</a>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>
