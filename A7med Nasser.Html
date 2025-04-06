@@ -3,142 +3,397 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A7med Nasser's Information</title>
+    <title>A7med Nasser's Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #03a9f4;
+            --secondary: #ffeb3b;
+            --dark: #121212;
+            --darker: #1e1e1e;
+            --light: #ffffff;
+            --accent: #0288d1;
+        }
+
         body {
-            background-color: #121212;
-            color: #ffffff;
-            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, var(--dark), var(--darker));
+            color: var(--light);
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 20px;
-            overflow-x: hidden;
+            min-height: 100vh;
         }
+
         .container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            background-color: #1e1e1e;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 30px;
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1s ease-out;
             position: relative;
-            animation: fadeIn 1s ease-in-out;
+            overflow: hidden;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        h1, h2 {
-            color: #03a9f4;
+
+        h1 {
+            color: var(--primary);
             text-align: center;
-            animation: slideIn 1s ease-in-out;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 0 0 15px rgba(3, 169, 244, 0.5);
+            position: relative;
+            animation: slideIn 0.8s ease-out;
         }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            margin: 15px auto;
+            border-radius: 3px;
+        }
+
         @keyframes slideIn {
-            from { transform: translateY(-20px); opacity: 0; }
+            from { transform: translateY(-30px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-        .info {
-            margin-bottom: 15px;
-            padding: 10px;
-            border-bottom: 1px solid #03a9f4;
-            transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
         }
-        .info:hover {
-            background-color: #333;
-            transform: rotate(-1deg);
-            color: #ffeb3b;
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid var(--primary);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            object-fit: cover;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
         }
-        .label {
-            font-weight: bold;
-            color: #03a9f4;
-            display: inline-block;
-            width: 150px;
-            transition: color 0.3s ease;
+
+        .profile-image:hover {
+            transform: scale(1.05) rotate(5deg);
+            border-color: var(--secondary);
+            box-shadow: 0 0 30px var(--primary);
         }
-        .label:hover {
-            color: #ffeb3b;
+
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(3, 169, 244, 0.3), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
         }
-        ul {
-            list-style-type: none;
-            padding-left: 0;
+
+        .profile-image:hover::before {
+            opacity: 1;
         }
-        ul li {
-            background-color: #333;
-            padding: 5px;
-            margin: 5px 0;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        ul li:hover {
-            background-color: #444;
-            transform: translateX(10px) rotate(-2deg);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-        }
-        a {
-            text-decoration: none;
-            color: #03a9f4;
-            transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
-        }
-        a:hover {
-            text-decoration: underline;
-            color: #ffeb3b;
-            text-shadow: 0 0 10px #ffeb3b;
-            transform: scale(1.1);
-        }
-        .image-container {
-            text-align: center;
+
+        .info-card {
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.8), rgba(40, 40, 40, 0.8));
+            border: 1px solid rgba(3, 169, 244, 0.3);
+            border-radius: 12px;
+            padding: 20px;
             margin-bottom: 20px;
-            animation: fadeIn 1s ease-in-out;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary);
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--primary));
+            z-index: -1;
+            border-radius: 14px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .info-card:hover::before {
+            opacity: 0.3;
+        }
+
+        .info-row {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .label {
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 180px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .label i {
+            margin-right: 10px;
+            font-size: 1.1em;
+        }
+
+        .value {
+            flex: 1;
+            color: var(--light);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover .label {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .info-card:hover .value {
+            color: var(--secondary);
+        }
+
+        .favorites-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+        }
+
+        .favorites-list li {
+            background: rgba(51, 51, 51, 0.5);
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .favorites-list li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .favorites-list li:hover {
+            background: rgba(68, 68, 68, 0.7);
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .favorites-list li:hover::before {
+            width: 8px;
+            background: var(--secondary);
+        }
+
+        /* Floating animation */
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary), var(--accent));
             border-radius: 10px;
-            border: 5px solid #03a9f4;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, filter 0.3s ease;
         }
-        .image-container img:hover {
-            transform: scale(1.05) rotate(2deg);
-            filter: brightness(1.2);
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(var(--accent), var(--primary));
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                max-width: 90%;
+            }
+
+            .info-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .label {
+                margin-bottom: 5px;
+                min-width: auto;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        /* Glow effect */
+        .glow-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle at center, rgba(3, 169, 244, 0.3), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .info-card:hover .glow-effect {
+            opacity: 0.5;
+        }
+
+        /* Special highlight */
+        .highlight {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <div class="image-container">
-            <img src="A7med Nasser 1.jpg" alt="A7med Nasser 2" width="400">
+        <div class="profile-header">
+            <img src="A7med Nasser 1.jpg" alt="A7med Nasser" class="profile-image floating">
+            <h1>A7med Nasser's <span class="highlight">Profile</span></h1>
         </div>
-        <h1>A7med Nasser's Information</h1>
-        <div class="info">
-            <span class="label">Name:</span> A7med Nasser
+
+        <div class="info-card">
+            <div class="glow-effect"></div>
+            <div class="info-row">
+                <span class="label"><i class="fas fa-user"></i> Name:</span>
+                <span class="value">A7med Nasser</span>
+            </div>
         </div>
-        <div class="info">
-            <span class="label">Age:</span> 14
+
+        <div class="info-card">
+            <div class="glow-effect"></div>
+            <div class="info-row">
+                <span class="label"><i class="fas fa-birthday-cake"></i> Age:</span>
+                <span class="value">14</span>
+            </div>
         </div>
-        <div class="info">
-            <span class="label">Hobbies:</span> 3ad El Flouse
+
+        <div class="info-card">
+            <div class="glow-effect"></div>
+            <div class="info-row">
+                <span class="label"><i class="fas fa-heart"></i> Hobbies:</span>
+                <span class="value">3ad El Flouse</span>
+            </div>
         </div>
-        <div class="info">
-            <span class="label">Favorite Sport:</span> Calisthenics
+
+        <div class="info-card">
+            <div class="glow-effect"></div>
+            <div class="info-row">
+                <span class="label"><i class="fas fa-running"></i> Favorite Sport:</span>
+                <span class="value">Calisthenics</span>
+            </div>
         </div>
-        <div class="info">
-            <span class="label">Favorite Person in Class:</span> El sisi
+
+        <div class="info-card">
+            <div class="glow-effect"></div>
+            <div class="info-row">
+                <span class="label"><i class="fas fa-users"></i> Favorite Person in Class:</span>
+                <span class="value">               El sisi</span>
+            </div>
         </div>
-        <div class="info">
-            <span class="label">Favorite Person in General:</span> El sisi
+
+        <div class="info-card">
+            <div class="glow-effect"></div>
+            <div class="info-row">
+                <span class="label"><i class="fas fa-star"></i> Favorite Person in General:</span>
+                <span class="value">             El sisi</span>
+            </div>
         </div>
-        <div class="info">
-            <span class="label">Favorite Teachers:</span>
-            <ul>
-              <li>M.Matheu/Matière sociale</li>
-              <li>Madame.Maybel/Math</li>
-              <li>M. Mohamed 5alifa/Arab</li>
+
+        <div class="info-card">
+            <div class="glow-effect"></div>
+            <div class="info-row">
+                <span class="label"><i class="fas fa-chalkboard-teacher"></i> Favorite Teachers:</span>
+                <div class="value"></div>
+            </div>
+            <ul class="favorites-list">
+                <li>M.Matheu/Matière sociale</li>
+                <li>Madame.Maybel/Math</li>
+                <li>M. Mohamed 5alifa/Arab</li>
             </ul>
         </div>
-        <div class="info">
-            <span class="label">Favorite Subjects:</span> Eng
+
+        <div class="info-card">
+            <div class="glow-effect"></div>
+            <div class="info-row">
+                <span class="label"><i class="fas fa-book"></i> Favorite Subjects:</span>
+                <span class="value">Eng</span>
+            </div>
         </div>
     </div>
+
+    <script>
+        // Add subtle animation to list items
+        document.addEventListener('DOMContentLoaded', function() {
+            const listItems = document.querySelectorAll('.favorites-list li');
+
+            listItems.forEach((item, index) => {
+                item.style.transitionDelay = `${index * 0.1}s`;
+            });
+
+            // Add floating animation to profile image
+            const profileImage = document.querySelector('.profile-image');
+            profileImage.addEventListener('mouseenter', function() {
+                this.classList.add('floating');
+            });
+
+            profileImage.addEventListener('mouseleave', function() {
+                this.classList.remove('floating');
+            });
+        });
+    </script>
 </body>
 </html>
