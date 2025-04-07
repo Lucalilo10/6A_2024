@@ -3,157 +3,617 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omar Mourad's Information</title>
+    <title>Omar Mourad's Profile</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@300;600&display=swap');
+
+        :root {
+            --primary: #00d9ff;
+            --secondary: #ff00aa;
+            --accent: #ffeb3b;
+            --dark: #0a0a0a;
+            --light: #f5f5f5;
+            --glow: 0 0 15px;
+        }
+
         body {
-            background-color: #121212;
-            color: #ffffff;
-            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0f0f1a, #1a1a2e);
+            color: var(--light);
+            font-family: 'Poppins', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            min-height: 100vh;
             overflow-x: hidden;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            background-color: #1e1e1e;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             position: relative;
-            animation: fadeIn 1s ease-in-out;
         }
+
+        /* Particle background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* Glowing gradient overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center,
+                        rgba(0, 217, 255, 0.1) 0%,
+                        rgba(255, 0, 170, 0.05) 50%,
+                        transparent 70%);
+            animation: rotateGradient 30s linear infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes rotateGradient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(20, 20, 40, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                        inset 0 0 15px rgba(0, 217, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+            transition: all 0.5s ease;
+        }
+
+        .container:hover {
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.5),
+                        inset 0 0 20px rgba(255, 0, 170, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg,
+                      var(--primary),
+                      var(--secondary),
+                      var(--primary));
+            animation: rainbow 5s linear infinite;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+
         h1, h2 {
-            color: #03a9f4;
+            font-family: 'Montserrat', sans-serif;
             text-align: center;
-            animation: slideIn 1s ease-in-out;
+            margin-bottom: 30px;
+            position: relative;
+            text-shadow: var(--glow) rgba(0, 217, 255, 0.7);
+            animation: textGlow 3s infinite alternate;
         }
-        @keyframes slideIn {
-            from { transform: translateY(-20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 10px rgba(0, 217, 255, 0.7); }
+            50% { text-shadow: 0 0 20px rgba(255, 0, 170, 0.7); }
+            100% { text-shadow: 0 0 15px rgba(255, 235, 59, 0.7); }
         }
-        .info {
-            margin-bottom: 15px;
-            padding: 10px;
-            border-bottom: 1px solid #03a9f4;
-            transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-top: 0;
         }
-        .info:hover {
-            background-color: #333;
-            transform: rotate(-1deg);
-            color: #ffeb3b;
-        }
-        .label {
-            font-weight: bold;
-            color: #03a9f4;
-            display: inline-block;
+
+        h1::after {
+            content: '';
+            display: block;
             width: 150px;
-            transition: color 0.3s ease;
+            height: 3px;
+            background: linear-gradient(90deg,
+                      var(--primary),
+                      var(--secondary));
+            margin: 15px auto;
+            border-radius: 3px;
+            animation: rainbow 5s linear infinite;
         }
-        .label:hover {
-            color: #ffeb3b;
-        }
-        ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        ul li {
-            background-color: #333;
-            padding: 5px;
-            margin: 5px 0;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        ul li:hover {
-            background-color: #444;
-            transform: translateX(10px) rotate(-2deg);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-        }
-        a {
-            text-decoration: none;
-            color: #03a9f4;
-            transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
-        }
-        a:hover {
-            text-decoration: underline;
-            color: #ffeb3b;
-            text-shadow: 0 0 10px #ffeb3b;
-            transform: scale(1.1);
-        }
+
         .image-container {
             text-align: center;
-            margin-bottom: 20px;
-            animation: fadeIn 1s ease-in-out;
+            margin: 0 auto 30px;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+            max-width: 400px;
         }
+
+        .image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg,
+                      rgba(0, 217, 255, 0.3) 0%,
+                      rgba(255, 0, 170, 0.2) 50%,
+                      rgba(0, 217, 255, 0.3) 100%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .image-container:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.03);
+            box-shadow: 0 15px 35px rgba(0, 217, 255, 0.6);
+        }
+
+        .image-container:hover::before {
+            opacity: 1;
+        }
+
         .image-container img {
-            max-width: 100%;
+            width: 100%;
             height: auto;
-            border-radius: 10px;
-            border: 5px solid #03a9f4;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, filter 0.3s ease;
+            display: block;
+            transition: all 0.5s ease;
+            transform: translateZ(20px);
+            border-radius: 15px;
         }
-        .image-container img:hover {
-            transform: scale(1.05) rotate(2deg);
-            filter: brightness(1.2);
+
+        .image-container:hover img {
+            filter: brightness(1.1) contrast(1.1);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: rgba(30, 30, 60, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card:hover {
+            background: rgba(40, 40, 80, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 217, 255, 0.3);
+            border-color: var(--primary);
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 0%,
+                transparent 45%,
+                rgba(0, 217, 255, 0.1) 50%,
+                transparent 55%,
+                transparent 100%
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .label {
+            font-weight: bold;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            text-shadow: var(--glow) rgba(0, 217, 255, 0.5);
+        }
+
+        .value {
+            color: var(--light);
+            font-size: 1rem;
+        }
+
+        .favorites-section {
+            margin-top: 40px;
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .favorite-item {
+            background: rgba(255, 0, 170, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 0, 170, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .favorite-item:hover {
+            background: rgba(255, 0, 170, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 0, 170, 0.3);
+            border-color: var(--secondary);
+        }
+
+        .favorite-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg,
+                      var(--secondary),
+                      var(--primary));
+        }
+
+        .favorite-item:nth-child(even) {
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .favorite-item:nth-child(even):hover {
+            background: rgba(0, 217, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .favorite-item:nth-child(even)::after {
+            background: linear-gradient(90deg,
+                      var(--primary),
+                      var(--secondary));
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            opacity: 0;
+            z-index: 9999;
+            animation: confetti 5s ease-in-out infinite;
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .social-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .social-button:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 217, 255, 0.5);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-      <div class="container">
-          <div class="image-container">
-              <img src="Omar Mourad.jpg" alt="Omar Hemdan" width="400">
-          </div>
-        <h1>Omar  Mourad's Information</h1>
-        <div class="info">
-            <span class="label">Name:</span> Omar Mourad
+    <!-- Animated particles background -->
+    <canvas class="particles" id="particles"></canvas>
+
+    <div class="container floating">
+        <div class="image-container pulse">
+            <img src="Omar Mourad.jpg" alt="Omar Hemdan">
         </div>
-        <div class="info">
-            <span class="label">Age:</span> 13
+
+        <h1>Omar Mourad's Profile</h1>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <span class="label">Full Name</span>
+                <span class="value">Omar Mourad</span>
+            </div>
+
+            <div class="info-card">
+                <span class="label">Age</span>
+                <span class="value">13 years young</span>
+            </div>
+
+            <div class="info-card">
+                <span class="label">Superpower</span>
+                <span class="value">Piano Mastery</span>
+            </div>
+
+            <div class="info-card">
+                <span class="label">Life Passion</span>
+                <span class="value">Eating (Professional Level)</span>
+            </div>
         </div>
-        <div class="info">
-            <span class="label">Hobbies:</span> Eat
+
+        <div class="info-grid">
+            <div class="info-card">
+                <span class="label">Favorite Sport</span>
+                <span class="value">Extreme Eating</span>
+            </div>
+
+            <div class="info-card">
+                <span class="label">Class Favorite</span>
+                <span class="value">Malek Alaa {ANA}</span>
+            </div>
+
+            <div class="info-card">
+                <span class="label">All-Time Favorite</span>
+                <span class="value">Mobasher</span>
+            </div>
+
+            <div class="info-card">
+                <span class="label">Energy Level</span>
+                <span class="value">⚡⚡⚡⚡⚡ (Max)</span>
+            </div>
         </div>
-        <div class="info">
-            <span class="label">Talent:</span> Piano
+
+        <div class="favorites-section">
+            <h2 style="color: var(--secondary);">Favorite Teachers</h2>
+            <div class="favorites-grid">
+                <div class="favorite-item">M. Tonobi</div>
+                <div class="favorite-item">M. Sayed Hamouda</div>
+                <div class="favorite-item">Ms. Kenzy</div>
+                <div class="favorite-item">Ms. Asmaa</div>
+                <div class="favorite-item">Ms. 2laa</div>
+                <div class="favorite-item">M. José</div>
+                <div class="favorite-item">M. Mina Joseph</div>
+                <div class="favorite-item">Ms. Amira</div>
+                <div class="favorite-item">M. Mohamed Khalifa</div>
+            </div>
         </div>
-        <div class="info">
-            <span class="label">Favorite Sport:</span> Eat
+
+        <div class="favorites-section">
+            <h2 style="color: var(--accent);">Favorite Subjects</h2>
+            <div class="favorites-grid">
+                <div class="favorite-item">Science</div>
+                <div class="favorite-item">Maths</div>
+                <div class="favorite-item">Français</div>
+            </div>
         </div>
-        <div class="info">
-            <span class="label">Favorite Person in Class:</span> Malek Alaa {ANA}
-        </div>
-        <div class="info">
-            <span class="label">Favorite Person in General:</span> Mobasher
-        </div>
-        <div class="info">
-            <span class="label">Favorite Teacher: {2yh kol dh ya 3am}</span>
-              <ul>
-                  <li>M.Tonobi</li>
-                  <li>M.sayed hamouda</li>
-                  <li>Ms.kenzy</li>
-                  <li>Ms.asmaa</li>
-                  <li>Ms.2laa</li>
-                  <li>M.josé</li>
-                  <li>M.mina joseph</li>
-                  <li>Ms.amira</li>
-                  <li>M.mohamed khalifa</li>
-              </ul>
-        </div>
-        <div class="info">
-            <span class="label">Favorite Subjects:</span>
-            <ul>
-              <li>Science</li>
-              <li>Maths</li>
-              <li>Français</li>
-            </ul>
+
+        <div class="social-buttons">
+            <div class="social-button">💀</div>
+            <div class="social-button">👻</div>
+            <div class="social-button">⚡</div>
+            <div class="social-button">🖤</div>
         </div>
     </div>
+
+    <script>
+        // Particle animation
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const colors = ['#00d9ff', '#ff00aa', '#ffeb3b', '#ffffff'];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 - 1;
+                this.opacity = Math.random() * 0.6 + 0.1;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+                if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.opacity;
+                ctx.fill();
+                ctx.closePath();
+
+                // Create connections between nearby particles
+                particles.forEach(particle => {
+                    const distance = Math.sqrt(
+                        Math.pow(this.x - particle.x, 2) +
+                        Math.pow(this.y - particle.y, 2)
+                    );
+
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = this.color;
+                        ctx.globalAlpha = (1 - distance/100) * 0.2;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(this.x, this.y);
+                        ctx.lineTo(particle.x, particle.y);
+                        ctx.stroke();
+                        ctx.closePath();
+                    }
+                });
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < 100; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        // Confetti effect on hover
+        document.querySelectorAll('.info-card, .favorite-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                for (let i = 0; i < 10; i++) {
+                    createConfetti(item);
+                }
+            });
+        });
+
+        function createConfetti(element) {
+            const rect = element.getBoundingClientRect();
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+
+            // Random position at top of element
+            const x = rect.left + Math.random() * rect.width;
+            const y = rect.top;
+
+            // Random color
+            const colors = ['#00d9ff', '#ff00aa', '#ffeb3b', '#ffffff'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+
+            // Random size
+            const size = Math.random() * 8 + 4;
+
+            // Random animation duration
+            const duration = Math.random() * 3 + 2;
+
+            // Apply styles
+            confetti.style.left = `${x}px`;
+            confetti.style.top = `${y}px`;
+            confetti.style.width = `${size}px`;
+            confetti.style.height = `${size}px`;
+            confetti.style.background = color;
+            confetti.style.animationDuration = `${duration}s`;
+
+            // Random shape
+            if (Math.random() > 0.5) {
+                confetti.style.borderRadius = '50%';
+            }
+
+            document.body.appendChild(confetti);
+
+            // Remove after animation
+            setTimeout(() => {
+                confetti.remove();
+            }, duration * 1000);
+        }
+
+        // Responsive adjustments
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>
